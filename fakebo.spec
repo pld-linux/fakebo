@@ -6,6 +6,7 @@ Release:	4
 License:	GPL
 Group:		Networking/Daemons
 Source0:	ftp://ftp.linux.hr/pub/fakebo/%{name}-%{version}.tar.gz
+# Source0-md5:	442b48ba44250104c30a6e7975230b7c
 Source1:	%{name}.init
 URL:		http://cvs.linux.hr/fakebo/
 BuildRequires:	autoconf
