@@ -3,7 +3,7 @@
 # fakebo	This shell script takes care of starting and stopping
 #		fakebo (trojan server fake daemon).
 #
-# chkconfig:    345  95 06
+# chkconfig:	345  95 06
 #
 # description:  FakeBO fakes trojan server responses (Back Orifice, \
 # 		NetBus, etc.) and logs every attempt to a logfile or stdout.
@@ -19,10 +19,14 @@
 [ -f /etc/sysconfig/fakebo ] && . /etc/sysconfig/fakebo
 
 # Check that networking is up.
-if is_no "${NETWORKING}"; then
-	# nls "ERROR: Networking is down. %s can't be run." fakebo
-	msg_Network_Down fakebo
-	exit 1
+if is_yes "${NETWORKING}"; then
+	if [ ! -f /var/lock/subsys/network ]; then
+		# nls "ERROR: Networking is down. %s can't be run." fakebo
+		msg_network_down fakebo
+		exit 1
+	fi
+else
+	exit 0
 fi
 
 
@@ -38,35 +42,35 @@ case "$1" in
 		[ $RETVAL -eq 0 ] && touch /var/lock/subsys/fakebo
 	else
 		# show "%s service is already running." fakebo
-		msg_Already_Running fakebo
+		msg_already_running fakebo
 		exit 1
 	fi
-        ;;
+	;;
   stop)
-        # Stop daemons.
-        # show "Stopping %s service" fakebo
+	# Stop daemons.
+	# show "Stopping %s service" fakebo
 	if [ -f /var/lock/subsys/fakebo ]; then
 		msg_stopping fakebo
 		killproc fakebo
 		rm -f /var/lock/subsys/fakebo >/dev/null 2>&1
 	else
 		# show "%s service is not running." fakebo
-		msg_Not_Running fakebo
+		msg_not_running fakebo
 		exit 1
 	fi	
-        ;;
-  restart)
-        $0 stop
+	;;
+  restart|reload)
+	$0 stop
 	$0 start
-        ;;
+	;;
   status)
 	status fakebo 
 	exit $?
-        ;;
+	;;
   *)
-        # show "Usage: %s {start|stop|status|restart|reload|force-reload}" $0
-	msg_Usage "$0 {start|stop|status|restart}"
-        exit 1
+	# show "Usage: %s {start|stop|restart|reload|status}"
+	msg_usage "$0 {start|stop|restart|reload|status}"
+	exit 1
 esac
 
 exit $RETVAL
