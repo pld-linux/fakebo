@@ -19,20 +19,19 @@ pings and replies back to the client trying to access your system.
 %prep
 %setup -q
 %build
-LDFLAGS="-s"; export LDFLAGS
 %configure
 %{__make}
 
 %install
 rm -rf $RPM_BUILD_ROOT
+install -d $RPM_BUILD_ROOT/etc/rc.d/init.d
 
 %{__make} install DESTDIR=$RPM_BUILD_ROOT
 
-install -d $RPM_BUILD_ROOT/etc/rc.d/init.d
 install %{SOURCE1} $RPM_BUILD_ROOT/etc/rc.d/init.d/fakebo
 
-gzip -9nf $RPM_BUILD_ROOT%{_mandir}/*/* INSTALL HACKING \
-	AUTHORS TODO NEWS ChangeLog README custom.replies
+gzip -9nf INSTALL HACKING AUTHORS TODO NEWS ChangeLog README \
+	custom.replies
 
 %clean
 rm -rf $RPM_BUILD_ROOT
@@ -47,7 +46,7 @@ fi
 
 
 %postun
-if [ "$1" = 0 ]; then
+if [ "$1" = "0" ]; then
 	if [ -f /var/lock/subsys/fakebo ]; then
 		/etc/rc.d/init.d/fakebo stop 1>&2
 	fi
