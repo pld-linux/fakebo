@@ -2,13 +2,14 @@ Summary:	Fakes trojan servers and logs incoming requests
 Summary(pl):	Program udaj±cy trojany i loguj±cy nadchodz±ce po³±czenia
 Name:		fakebo
 Version:	0.4.1
-Release:	1
+Release:	2
 License:	GPL
 Group:		X11/Utilities
 Group(pl):	X11/Narzêdzia
 Source0:	ftp://ftp.linux.hr/pub/fakebo/%{name}-%{version}.tar.gz
 Source1:	fakebo.init
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
+BuildRequires:	autoconf
 URL:		http://cvs.linux.hr/fakebo/
 Requires:	/sbin/chkconfig
 
@@ -25,7 +26,9 @@ klienta próbuj±cego uzyskaæ dostêp do twojego systemu.
 
 %prep
 %setup -q
+
 %build
+autoconf
 %configure
 %{__make}
 
@@ -66,4 +69,4 @@ fi
 %attr(754,root,root) /etc/rc.d/init.d/fakebo
 %attr(640,root,root) %config(noreplace) %verify(not size mtime md5) %{_sysconfdir}/fakebo.conf
 %{_mandir}/man1/fakebo.1*
-%doc {INSTALL,HACKING,AUTHORS,TODO,NEWS,ChangeLog,README,custom.replies}.gz
+%doc *.gz
