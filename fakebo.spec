@@ -5,8 +5,6 @@ Version:	0.4.1
 Release:	3
 License:	GPL
 Group:		Networking/Daemons
-Group(de):	Netzwerkwesen/Server
-Group(pl):	Sieciowe/Serwery
 Source0:	ftp://ftp.linux.hr/pub/fakebo/%{name}-%{version}.tar.gz
 Source1:	%{name}.init
 URL:		http://cvs.linux.hr/fakebo/
