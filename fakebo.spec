@@ -28,7 +28,7 @@ klienta próbuj±cego uzyskaæ dostêp do twojego systemu.
 %setup -q
 
 %build
-autoconf
+%{__autoconf}
 %configure
 %{__make}
 
