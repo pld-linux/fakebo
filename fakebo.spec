@@ -10,8 +10,8 @@ Source0:	ftp://ftp.linux.hr/pub/fakebo/%{name}-%{version}.tar.gz
 Source1:	%{name}.init
 URL:		http://cvs.linux.hr/fakebo/
 BuildRequires:	autoconf
-Prereq:		rc-scripts
-Prereq:		/sbin/chkconfig
+PreReq:		rc-scripts
+Requires(post,preun):	/sbin/chkconfig
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
