@@ -3,9 +3,9 @@
 # fakebo	This shell script takes care of starting and stopping
 #		fakebo (trojan server fake daemon).
 #
-# chkconfig:	345  95 06
+# chkconfig:	345 95 06
 #
-# description:  FakeBO fakes trojan server responses (Back Orifice, \
+# description:	FakeBO fakes trojan server responses (Back Orifice, \
 # 		NetBus, etc.) and logs every attempt to a logfile or stdout.
 
 
