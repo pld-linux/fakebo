@@ -40,8 +40,6 @@ install -d $RPM_BUILD_ROOT/etc/rc.d/init.d
 
 install %{SOURCE1} $RPM_BUILD_ROOT/etc/rc.d/init.d/fakebo
 
-gzip -9nf HACKING AUTHORS TODO NEWS ChangeLog README custom.replies
-
 %clean
 rm -rf $RPM_BUILD_ROOT
 
@@ -64,7 +62,7 @@ fi
 
 %files
 %defattr(644,root,root,755)
-%doc *.gz
+%doc HACKING AUTHORS TODO NEWS ChangeLog README custom.replies
 %attr(755,root,root) %{_bindir}/fakebo
 %attr(754,root,root) /etc/rc.d/init.d/fakebo
 %attr(640,root,root) %config(noreplace) %verify(not size mtime md5) %{_sysconfdir}/fakebo.conf
