@@ -12,6 +12,7 @@ Source1:	%{name}.init
 URL:		http://cvs.linux.hr/fakebo/
 BuildRequires:	autoconf
 Prereq:		rc-scripts
+Prereq:		/sbin/chkconfig
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
