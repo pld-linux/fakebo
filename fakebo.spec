@@ -44,10 +44,21 @@ gzip -9nf INSTALL HACKING AUTHORS TODO NEWS ChangeLog README \
 rm -rf $RPM_BUILD_ROOT
 
 %post
-DESC="fakebo daemon"; %chkconfig_add
+/sbin/chkconfig --add fakebo
+if [ -f /var/lock/subsys/fakebo ]; then
+	/etc/rc.d/init.d/fakebo restart 1>&2
+else
+	echo "Run \"/etc/rc.d/init.d/fakebo start\" to start fakebo daemon."
+fi
 
-%preun
-%chkconfig_del
+
+%postun
+if [ "$1" = "0" ]; then
+	if [ -f /var/lock/subsys/fakebo ]; then
+		/etc/rc.d/init.d/fakebo stop 1>&2
+	fi
+	/sbin/chkconfig --del fakebo
+fi
 
 %files
 %defattr(644,root,root,755)
