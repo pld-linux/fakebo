@@ -4,14 +4,15 @@ Name:		fakebo
 Version:	0.4.1
 Release:	2
 License:	GPL
-Group:		X11/Utilities
-Group(pl):	X11/Narzêdzia
+Group:		Networking/Daemons
+Group(de):	Netzwerkwesen/Server
+Group(pl):	Sieciowe/Serwery
 Source0:	ftp://ftp.linux.hr/pub/fakebo/%{name}-%{version}.tar.gz
-Source1:	fakebo.init
-BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
-BuildRequires:	autoconf
+Source1:	%{name}.init
 URL:		http://cvs.linux.hr/fakebo/
-Requires:	/sbin/chkconfig
+BuildRequires:	autoconf
+Prereq:		rc-scripts
+BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
 FakeBO fakes trojan server responses (Back Orifice, NetBus, etc.) and
@@ -40,8 +41,7 @@ install -d $RPM_BUILD_ROOT/etc/rc.d/init.d
 
 install %{SOURCE1} $RPM_BUILD_ROOT/etc/rc.d/init.d/fakebo
 
-gzip -9nf INSTALL HACKING AUTHORS TODO NEWS ChangeLog README \
-	custom.replies
+gzip -9nf HACKING AUTHORS TODO NEWS ChangeLog README custom.replies
 
 %clean
 rm -rf $RPM_BUILD_ROOT
@@ -65,8 +65,8 @@ fi
 
 %files
 %defattr(644,root,root,755)
+%doc *.gz
 %attr(755,root,root) %{_bindir}/fakebo
 %attr(754,root,root) /etc/rc.d/init.d/fakebo
 %attr(640,root,root) %config(noreplace) %verify(not size mtime md5) %{_sysconfdir}/fakebo.conf
 %{_mandir}/man1/fakebo.1*
-%doc *.gz
