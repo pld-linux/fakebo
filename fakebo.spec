@@ -2,7 +2,7 @@ Summary:	Fakes trojan servers and logs incoming requests
 Summary(pl):	Program udaj±cy trojany i loguj±cy nadchodz±ce po³±czenia
 Name:		fakebo
 Version:	0.4.1
-Release:	2
+Release:	3
 License:	GPL
 Group:		Networking/Daemons
 Group(de):	Netzwerkwesen/Server
@@ -56,7 +56,7 @@ else
 fi
 
 
-%postun
+%preun
 if [ "$1" = "0" ]; then
 	if [ -f /var/lock/subsys/fakebo ]; then
 		/etc/rc.d/init.d/fakebo stop 1>&2
