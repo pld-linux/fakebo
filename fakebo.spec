@@ -3,14 +3,14 @@ Summary(pl):	Program udaj±cy trojany i loguj±cy nadchodz±ce po³±czenia
 Name:		fakebo
 Version:	0.4.1
 Release:	5
-License:	GPL
+License:	GPL v2
 Group:		Networking/Daemons
 Source0:	ftp://ftp.linux.hr/pub/fakebo/%{name}-%{version}.tar.gz
 # Source0-md5:	442b48ba44250104c30a6e7975230b7c
 Source1:	%{name}.init
 URL:		http://cvs.linux.hr/fakebo/
 BuildRequires:	autoconf
-PreReq:		rc-scripts
+Requires:	rc-scripts
 Requires(post,preun):	/sbin/chkconfig
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
@@ -64,8 +64,8 @@ fi
 
 %files
 %defattr(644,root,root,755)
-%doc HACKING AUTHORS TODO NEWS ChangeLog README custom.replies
+%doc AUTHORS ChangeLog HACKING NEWS README TODO custom.replies
 %attr(755,root,root) %{_bindir}/fakebo
 %attr(754,root,root) /etc/rc.d/init.d/fakebo
-%attr(640,root,root) %config(noreplace) %verify(not size mtime md5) %{_sysconfdir}/fakebo.conf
+%attr(640,root,root) %config(noreplace) %verify(not md5 mtime size) %{_sysconfdir}/fakebo.conf
 %{_mandir}/man1/fakebo.1*
