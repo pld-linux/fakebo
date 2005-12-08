@@ -50,7 +50,7 @@ case "$1" in
 		rm -f /var/lock/subsys/fakebo >/dev/null 2>&1
 	else
 		msg_not_running fakebo
-	fi	
+	fi
 	;;
   restart|force-reload)
 	$0 stop
@@ -58,7 +58,7 @@ case "$1" in
 	exit $?
 	;;
   status)
-	status fakebo 
+	status fakebo
 	exit $?
 	;;
   *)
