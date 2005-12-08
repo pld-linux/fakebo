@@ -21,7 +21,6 @@
 # Check that networking is up.
 if is_yes "${NETWORKING}"; then
 	if [ ! -f /var/lock/subsys/network -a "$1" != stop -a "$1" != status ]; then
-		# nls "ERROR: Networking is down. %s can't be run." fakebo
 		msg_network_down fakebo
 		exit 1
 	fi
@@ -35,25 +34,21 @@ case "$1" in
   start)
 	# Check if the service is already running?
 	if [ ! -f /var/lock/subsys/fakebo ]; then
-		# show "Starting %s service." fakebo
 		msg_starting fakebo
 		daemon fakebo -b
 		RETVAL=$?
 		[ $RETVAL -eq 0 ] && touch /var/lock/subsys/fakebo
 	else
-		# show "%s service is already running." fakebo
 		msg_already_running fakebo
 	fi
 	;;
   stop)
 	# Stop daemons.
-	# show "Stopping %s service" fakebo
 	if [ -f /var/lock/subsys/fakebo ]; then
 		msg_stopping fakebo
 		killproc fakebo
 		rm -f /var/lock/subsys/fakebo >/dev/null 2>&1
 	else
-		# show "%s service is not running." fakebo
 		msg_not_running fakebo
 	fi	
 	;;
@@ -67,7 +62,6 @@ case "$1" in
 	exit $?
 	;;
   *)
-	# show "Usage: %s {start|stop|restart|force-reload|status}"
 	msg_usage "$0 {start|stop|restart|force-reload|status}"
 	exit 3
 esac
