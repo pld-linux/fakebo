@@ -10,8 +10,9 @@ Source0:	ftp://ftp.linux.hr/pub/fakebo/%{name}-%{version}.tar.gz
 Source1:	%{name}.init
 URL:		http://cvs.linux.hr/fakebo/
 BuildRequires:	autoconf
-Requires:	rc-scripts
+BuildRequires:	rpmbuild(macros) >= 1.268
 Requires(post,preun):	/sbin/chkconfig
+Requires:	rc-scripts
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
@@ -47,18 +48,11 @@ rm -rf $RPM_BUILD_ROOT
 
 %post
 /sbin/chkconfig --add fakebo
-if [ -f /var/lock/subsys/fakebo ]; then
-	/etc/rc.d/init.d/fakebo restart 1>&2
-else
-	echo "Run \"/etc/rc.d/init.d/fakebo start\" to start fakebo daemon."
-fi
-
+%service fakebo restart "fakebo daemon"
 
 %preun
 if [ "$1" = "0" ]; then
-	if [ -f /var/lock/subsys/fakebo ]; then
-		/etc/rc.d/init.d/fakebo stop 1>&2
-	fi
+	%service fakebo stop
 	/sbin/chkconfig --del fakebo
 fi
 
