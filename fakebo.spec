@@ -2,7 +2,7 @@ Summary:	Fakes trojan servers and logs incoming requests
 Summary(pl):	Program udaj±cy trojany i loguj±cy nadchodz±ce po³±czenia
 Name:		fakebo
 Version:	0.4.1
-Release:	5
+Release:	6
 License:	GPL v2
 Group:		Networking/Daemons
 Source0:	ftp://ftp.linux.hr/pub/fakebo/%{name}-%{version}.tar.gz
@@ -38,7 +38,7 @@ klienta próbuj±cego uzyskaæ dostêp do twojego systemu.
 rm -rf $RPM_BUILD_ROOT
 install -d $RPM_BUILD_ROOT/etc/rc.d/init.d
 
-%{__make} install \
+%{__make} -j1 install \
 	DESTDIR=$RPM_BUILD_ROOT
 
 install %{SOURCE1} $RPM_BUILD_ROOT/etc/rc.d/init.d/fakebo
