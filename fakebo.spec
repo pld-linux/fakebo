@@ -1,5 +1,5 @@
 Summary:	Fakes trojan servers and logs incoming requests
-Summary(pl):	Program udaj±cy trojany i loguj±cy nadchodz±ce po³±czenia
+Summary(pl.UTF-8):   Program udajÄ…cy trojany i logujÄ…cy nadchodzÄ…ce poÅ‚Ä…czenia
 Name:		fakebo
 Version:	0.4.1
 Release:	6
@@ -20,11 +20,11 @@ FakeBO fakes trojan server responses (Back Orifice, NetBus, etc.) and
 logs every attempt to a logfile or stdout. It is able to send fake
 pings and replies back to the client trying to access your system.
 
-%description -l pl
-FakeBO udaje odpowiedzi trojanów (Back Orifice, NetBus, itp.) i loguje
-ka¿d± próbê do pliku z logiem lub na standardowe wyj¶cie. Jest on
-zdolny do wysy³ania fa³szywych pingów i odpowiedzi z powrotem do
-klienta próbuj±cego uzyskaæ dostêp do twojego systemu.
+%description -l pl.UTF-8
+FakeBO udaje odpowiedzi trojanÃ³w (Back Orifice, NetBus, itp.) i loguje
+kaÅ¼dÄ… prÃ³bÄ™ do pliku z logiem lub na standardowe wyjÅ›cie. Jest on
+zdolny do wysyÅ‚ania faÅ‚szywych pingÃ³w i odpowiedzi z powrotem do
+klienta prÃ³bujÄ…cego uzyskaÄ‡ dostÄ™p do twojego systemu.
 
 %prep
 %setup -q
