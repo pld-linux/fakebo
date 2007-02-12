@@ -1,5 +1,5 @@
 Summary:	Fakes trojan servers and logs incoming requests
-Summary(pl.UTF-8):   Program udający trojany i logujący nadchodzące połączenia
+Summary(pl.UTF-8):	Program udający trojany i logujący nadchodzące połączenia
 Name:		fakebo
 Version:	0.4.1
 Release:	6
